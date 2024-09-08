@@ -1,5 +1,5 @@
 import 'package:boxigo_project/pages/booking_leads/bloc/booking_leads_bloc.dart';
-import 'package:boxigo_project/pages/widgets/booking_card.dart';
+import 'package:boxigo_project/pages/booking_leads/widgets/booking_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

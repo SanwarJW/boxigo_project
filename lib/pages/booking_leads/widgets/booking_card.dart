@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:boxigo_project/model/customer_estimate_flow.dart';
+import 'package:boxigo_project/pages/details_page/details.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -38,11 +39,13 @@ class BookingCard extends StatelessWidget {
                       toAddress: customerEstimateFlow.toAddress,
                     ),
                     const SizedBox(height: 16),
-                    const Row(
+                    Row(
                       children: [
-                        ViewDetailsButton(),
-                        SizedBox(width: 10),
-                        SubmitQuoteButton()
+                        ViewDetailsButton(
+                          customerEstimateFlow: customerEstimateFlow,
+                        ),
+                        const SizedBox(width: 10),
+                        const SubmitQuoteButton()
                       ],
                     ),
                   ],
@@ -51,8 +54,7 @@ class BookingCard extends StatelessWidget {
             ],
           ),
           const Padding(
-            padding: EdgeInsets.only(
-                top: 16.0), // Adding space before the bottom line
+            padding: EdgeInsets.only(top: 16.0),
             child: Divider(color: Colors.grey),
           ),
         ],
@@ -199,13 +201,18 @@ class ToAddressWidget extends StatelessWidget {
 }
 
 class ViewDetailsButton extends StatelessWidget {
-  const ViewDetailsButton({super.key});
+  final CustomerEstimateFlow customerEstimateFlow;
+  const ViewDetailsButton({super.key, required this.customerEstimateFlow});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return DetailsPage(customerEstimateFlow: customerEstimateFlow);
+          }));
+        },
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: Colors.orange), // Orange border
           shape: const RoundedRectangleBorder(), // Rectangular shape
